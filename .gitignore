@@ -1,0 +1,27 @@
+# OS Files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Node & Build artifacts
+node_modules/
+dist/
+build/
+.next/
+.cache/
+
+# Python artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+.env
+.venv/
+env/
+*.db
+*.db-shm
+*.db-wal
+
+# Scratch & Temporary Logs
+*.log
+.system_generated/
+scratch/

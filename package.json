@@ -1,0 +1,24 @@
+{
+  "name": "sonicwave-music-streaming",
+  "version": "1.0.0",
+  "description": "Next-Generation Music Streaming Platform with 41+ Top Indian, Marathi & Global Artists",
+  "main": "server.py",
+  "scripts": {
+    "start": "python server.py",
+    "dev": "python server.py",
+    "serve": "npx serve ."
+  },
+  "keywords": [
+    "music",
+    "streaming",
+    "spotify",
+    "sonicwave",
+    "audio-player",
+    "pwa",
+    "marathi-songs",
+    "hindi-songs",
+    "english-pop"
+  ],
+  "author": "Sai Patil",
+  "license": "MIT"
+}

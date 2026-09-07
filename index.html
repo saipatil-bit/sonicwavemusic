@@ -1,0 +1,916 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <!-- Security Headers -->
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src 'self' https:; script-src 'self' 'unsafe-inline' https://www.youtube.com https://s.ytimg.com https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; media-src 'self' https:; frame-src https://www.youtube.com https://www.youtube-nocookie.com; connect-src 'self' https:;">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Sonicwave - Next-Gen Music Streaming</title>
+
+  <!-- Primary Meta Tags -->
+  <meta name="title" content="Sonicwave - Next-Gen Music Streaming">
+  <meta name="description"
+    content="Stream 180+ verified hits across 41+ top Indian, Marathi, and Global Pop artists. Enjoy personalized playlists, queue management, high-fidelity audio, and modern aesthetics.">
+  <meta name="keywords"
+    content="music streaming, bollywood songs, marathi hits, english pop, arijit singh, ajay atul, taylor swift, ed sheeran, online player">
+  <meta name="author" content="Sai Patil">
+  <meta name="theme-color" content="#121212">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Sonicwave">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Sonicwave - Next-Gen Music Streaming">
+  <meta property="og:description"
+    content="Stream 180+ verified hits across 41+ top Indian, Marathi, and Global Pop artists with authentic album art and zero ads.">
+  <meta property="og:image" content="logo.png">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:title" content="Sonicwave - Next-Gen Music Streaming">
+  <meta property="twitter:description"
+    content="Stream 180+ verified hits across 41+ top Indian, Marathi, and Global Pop artists with authentic album art.">
+  <meta property="twitter:image" content="logo.png">
+
+  <!-- App Icons & PWA -->
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="apple-touch-icon" href="logo.png">
+  <link rel="manifest" href="manifest.json">
+
+  <!-- Fonts & Styles -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="app-container">
+    <!-- Left Sidebar -->
+    <aside class="sidebar">
+      <div class="logo-area" onclick="showView('home')">
+        <div class="logo">
+          <div class="logo-image-box">
+            <img src="logo.jpg" alt="Sonicwave" class="logo-img">
+          </div>
+          <span class="logo-text">Sonic<span class="logo-accent">wave</span></span>
+        </div>
+      </div>
+
+      <nav class="nav-menu">
+        <button class="nav-item active" data-view="home">
+          <i class="fa-solid fa-house"></i>
+          <span>Home</span>
+        </button>
+        <button class="nav-item" data-view="search">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <span>Search</span>
+        </button>
+        <button class="nav-item" data-view="artists">
+          <i class="fa-solid fa-users-line"></i>
+          <span>Artists</span>
+        </button>
+        <button class="nav-item" data-view="library">
+          <i class="fa-solid fa-book-bookmark"></i>
+          <span>Your Library</span>
+        </button>
+        <button class="nav-item admin-only-item" data-view="admin" id="nav-admin-btn">
+          <i class="fa-solid fa-shield-halved"></i>
+          <span>Admin Panel</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-divider"></div>
+
+      <div class="playlist-quick-actions">
+        <button class="sidebar-action-btn" id="create-playlist-btn">
+          <div class="action-icon-box create-icon"><i class="fa-solid fa-plus"></i></div>
+          <span>Create Playlist</span>
+        </button>
+        <button class="sidebar-action-btn" id="liked-songs-btn">
+          <div class="action-icon-box heart-icon"><i class="fa-solid fa-heart"></i></div>
+          <span>Liked Songs</span>
+        </button>
+        <button class="sidebar-action-btn" id="sidebar-upload-song-btn">
+          <div class="action-icon-box upload-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+          <span>Upload Song</span>
+        </button>
+      </div>
+
+      <div class="sidebar-divider"></div>
+
+      <div class="user-playlists-container">
+        <div class="playlist-header-label">PLAYLISTS</div>
+        <ul class="user-playlists-list" id="user-playlists-list"></ul>
+      </div>
+
+      <div class="sidebar-track-preview" id="sidebar-track-preview">
+        <img id="sidebar-thumb"
+          src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=200&auto=format&fit=crop&q=80"
+          alt="Cover">
+        <div class="sidebar-track-info">
+          <div class="sidebar-track-title" id="sidebar-title">Bohemian Rhapsody</div>
+          <div class="sidebar-track-artist" id="sidebar-artist">Queen</div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      <header class="top-header">
+        <div class="header-nav-arrows">
+          <button class="arrow-btn" id="btn-back" title="Go Back"><i class="fa-solid fa-chevron-left"></i></button>
+          <button class="arrow-btn" id="btn-forward" title="Go Forward"><i
+              class="fa-solid fa-chevron-right"></i></button>
+        </div>
+
+        <!-- Universal Search Bar -->
+        <div class="search-box-wrapper">
+          <div class="search-bar-container">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            <input type="text" id="yt-search-input"
+              placeholder="Search Hindi, Marathi, Punjabi songs, artists, albums..." autocomplete="off">
+            <button class="search-clear-btn" id="search-clear-btn"><i class="fa-solid fa-xmark"></i></button>
+            <button class="search-submit-btn" id="search-submit-btn"><i class="fa-solid fa-arrow-right"></i></button>
+          </div>
+          <div class="search-suggestions" id="search-suggestions"></div>
+        </div>
+
+        <div class="header-user-actions">
+
+          <!-- User Profile & Auth Dropdown Trigger -->
+          <div class="profile-dropdown-container">
+            <div class="user-profile-badge" id="user-profile-badge">
+              <div class="avatar-circle" id="user-avatar"><i class="fa-solid fa-user"></i></div>
+              <div class="user-badge-details">
+                <span class="user-name" id="user-display-name">Sai Patil</span>
+                <span class="user-role-tag admin" id="user-role-badge">Admin</span>
+              </div>
+              <i class="fa-solid fa-chevron-down dropdown-arrow"></i>
+            </div>
+            <div class="profile-dropdown-menu" id="profile-dropdown-menu">
+              <div class="dropdown-header">
+                <strong id="dropdown-user-name">Sai Patil</strong>
+                <small id="dropdown-user-email">sai@sonicwave.com</small>
+              </div>
+              <div class="dropdown-divider"></div>
+              <button class="dropdown-item" id="btn-dropdown-admin">
+                <i class="fa-solid fa-shield-halved"></i> Admin User Management
+              </button>
+              <button class="dropdown-item" id="btn-dropdown-upload">
+                <i class="fa-solid fa-cloud-arrow-up"></i> Upload / Add Song
+              </button>
+              <button class="dropdown-item" id="btn-dropdown-library">
+                <i class="fa-solid fa-heart"></i> My Liked Songs
+              </button>
+              <div class="dropdown-divider"></div>
+              <a href="login.html" class="dropdown-item" style="text-decoration:none; color:inherit;">
+                <i class="fa-solid fa-arrow-right-to-bracket"></i> Open Full Login Page
+              </a>
+              <button class="dropdown-item" id="btn-dropdown-switch-auth">
+                <i class="fa-solid fa-right-to-bracket"></i> Login / Switch Account
+              </button>
+              <button class="dropdown-item logout-item" id="btn-dropdown-logout">
+                <i class="fa-solid fa-right-from-bracket"></i> Logout
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div class="filter-pills-bar" id="filter-pills-bar">
+        <button class="filter-pill active" data-filter="all">All</button>
+        <button class="filter-pill" data-filter="hindi">Bollywood & Hindi</button>
+        <button class="filter-pill" data-filter="marathi">Marathi Hits</button>
+        <button class="filter-pill" data-filter="english">English & Pop</button>
+        <button class="filter-pill" data-filter="punjabi">Punjabi Bangers</button>
+        <button class="filter-pill" data-filter="indie">Indie & Acoustic</button>
+      </div>
+
+      <div class="content-scroll-area" id="content-scroll-area">
+        <!-- 1. Home View -->
+        <section class="view-section active" id="view-home">
+          <div class="hero-banner">
+            <div class="hero-content">
+              <span class="hero-badge"><i class="fa-solid fa-bolt"></i> ULTRA HD AUDIO STREAMING</span>
+              <h1 class="hero-title">Unlimited Music & Hindi Superhits</h1>
+              <p class="hero-desc">Stream millions of Bollywood hits, global chart-toppers, and official music videos
+                with full controls.</p>
+              <div class="hero-cta-group">
+                <button class="btn-hero-play" id="hero-play-btn"><i class="fa-solid fa-play"></i> Play Top Hits</button>
+                <button class="btn-hero-secondary" id="hero-explore-btn"><i class="fa-solid fa-compass"></i> Explore
+                  Catalog</button>
+                <button class="btn-hero-secondary" id="hero-upload-btn"><i class="fa-solid fa-cloud-arrow-up"></i>
+                  Upload Song</button>
+              </div>
+            </div>
+            <div class="hero-art-wrapper">
+              <img id="hero-art"
+                src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=400&auto=format&fit=crop&q=80"
+                alt="Featured">
+            </div>
+          </div>
+
+          <!-- Artists Fast Selection Bar -->
+          <div class="section-block" style="margin-top: 24px;">
+            <div class="section-header">
+              <h2><i class="fa-solid fa-users-line" style="color:var(--spotify-green); margin-right:8px;"></i> Popular
+                Artists</h2>
+              <button class="btn-section-see-all" onclick="showView('artists')">View All Artists</button>
+            </div>
+            <div class="artists-quick-chips-row" id="home-artist-chips"
+              style="display:flex; gap:12px; overflow-x:auto; padding-bottom:12px;"></div>
+          </div>
+
+          <!-- All Artists Song Suggestions (Curated Mix) -->
+          <div class="section-block">
+            <div class="section-header">
+              <h2><i class="fa-solid fa-sparkles" style="color:#ffd700; margin-right:8px;"></i> Suggested Songs From All
+                Artists</h2>
+              <button class="btn-section-see-all" onclick="showView('artists')">Explore All</button>
+            </div>
+            <div class="tracks-card-grid" id="home-all-artist-suggestions-grid"></div>
+          </div>
+
+          <!-- Punjabi Chartbusters -->
+          <div class="section-block">
+            <div class="section-header">
+              <h2><i class="fa-solid fa-fire" style="color:#e91429; margin-right:8px;"></i> Trending Punjabi Hits</h2>
+              <button class="btn-section-see-all" onclick="showView('artists')">More Punjabi</button>
+            </div>
+            <div class="tracks-card-grid" id="home-punjabi-grid"></div>
+          </div>
+
+          <!-- Romantic & Soulful Hits -->
+          <div class="section-block">
+            <div class="section-header">
+              <h2><i class="fa-solid fa-heart" style="color:#e8115b; margin-right:8px;"></i> Romantic & Soulful Melodies
+              </h2>
+              <button class="btn-section-see-all" onclick="showView('artists')">More Romance</button>
+            </div>
+            <div class="tracks-card-grid" id="home-romance-grid"></div>
+          </div>
+
+          <!-- Indie & Acoustic Vibes -->
+          <div class="section-block">
+            <div class="section-header">
+              <h2><i class="fa-solid fa-guitar" style="color:#8d67ab; margin-right:8px;"></i> Indie, Pop & Acoustic
+                Sensations</h2>
+              <button class="btn-section-see-all" onclick="showView('artists')">More Indie</button>
+            </div>
+            <div class="tracks-card-grid" id="home-indie-grid"></div>
+          </div>
+
+          <!-- Evergreen Classics & Legends -->
+          <div class="section-block">
+            <div class="section-header">
+              <h2><i class="fa-solid fa-record-vinyl" style="color:#ffd0a0; margin-right:8px;"></i> Evergreen Classics &
+                Golden Legends</h2>
+              <button class="btn-section-see-all" onclick="showView('artists')">More Legends</button>
+            </div>
+            <div class="tracks-card-grid" id="home-legends-grid"></div>
+          </div>
+
+          <!-- South Hits -->
+          <div class="section-block">
+            <div class="section-header">
+              <h2><i class="fa-solid fa-bolt" style="color:#0d73ec; margin-right:8px;"></i> South Cinema & High Energy
+                Anthems</h2>
+              <button class="btn-section-see-all" onclick="showView('artists')">More South Hits</button>
+            </div>
+            <div class="tracks-card-grid" id="home-south-grid"></div>
+          </div>
+
+          <!-- Marathi Superhits & Folk Anthems -->
+          <div class="section-block">
+            <div class="section-header">
+              <h2><i class="fa-solid fa-flag" style="color:#ff8800; margin-right:8px;"></i> Marathi Superhits & Folk
+                Anthems</h2>
+              <button class="btn-section-see-all" onclick="showView('artists')">More Marathi</button>
+            </div>
+            <div class="tracks-card-grid" id="home-marathi-grid"></div>
+          </div>
+
+          <!-- English Chartbusters & Global Pop -->
+          <div class="section-block">
+            <div class="section-header">
+              <h2><i class="fa-solid fa-earth-americas" style="color:#38bdf8; margin-right:8px;"></i> English
+                Chartbusters & Global Pop</h2>
+              <button class="btn-section-see-all" onclick="showView('artists')">More English Pop</button>
+            </div>
+            <div class="tracks-card-grid" id="home-english-grid"></div>
+          </div>
+
+          <!-- Global Hits -->
+          <div class="section-block">
+            <div class="section-header">
+              <h2><i class="fa-solid fa-globe" style="color:#1ed760; margin-right:8px;"></i> Global & Lo-Fi Hits</h2>
+            </div>
+            <div class="tracks-card-grid" id="trending-grid"></div>
+          </div>
+        </section>
+
+        <!-- 2. Search View -->
+        <section class="view-section" id="view-search">
+          <div class="search-view-header">
+            <h2 id="search-results-heading">Search Music & Any Artist</h2>
+            <p>Type any song, artist name, or genre to stream high-fidelity audio immediately.</p>
+          </div>
+
+          <div class="search-loading-state" id="search-loading" style="display: none;">
+            <div class="spotify-spinner"></div>
+            <p>Searching live music catalog...</p>
+          </div>
+
+          <div class="search-results-layout" id="search-results-layout">
+            <div class="top-result-card-box" id="top-result-box" style="display:none;">
+              <h3>Top Result</h3>
+              <div class="top-result-card" id="top-result-card"></div>
+            </div>
+
+            <div class="search-songs-list-box" id="search-songs-box">
+              <h3>Songs & Videos</h3>
+              <div class="tracks-table-container">
+                <table class="tracks-table">
+                  <thead>
+                    <tr>
+                      <th style="width: 40px;">#</th>
+                      <th>TITLE</th>
+                      <th>ARTIST / ALBUM</th>
+                      <th style="width: 80px;"><i class="fa-regular fa-clock"></i></th>
+                      <th style="width: 90px;">ACTIONS</th>
+                    </tr>
+                  </thead>
+                  <tbody id="search-tracks-tbody"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- Artist Albums & Discography Section -->
+          <div class="artist-albums-section" id="artist-albums-section" style="display:none; margin: 28px 0 16px 0;">
+            <div class="section-header">
+              <h2><i class="fa-solid fa-compact-disc" style="color:var(--spotify-green); margin-right:8px;"></i> Albums
+                & Singles</h2>
+            </div>
+            <div class="tracks-card-grid" id="search-albums-grid"></div>
+          </div>
+
+          <div class="browse-categories-section" id="browse-categories">
+            <h3>Browse Genres & Moods</h3>
+            <div class="categories-grid" id="categories-grid"></div>
+          </div>
+        </section>
+
+        <!-- 3. Library View -->
+        <section class="view-section" id="view-library">
+          <div class="library-header">
+            <div class="library-cover-box"><i class="fa-solid fa-heart library-cover-icon"></i></div>
+            <div class="library-header-details">
+              <span class="playlist-type">PLAYLIST</span>
+              <h1 class="playlist-name-title" id="library-current-title">Liked Songs</h1>
+              <p class="playlist-meta-info"><span id="library-track-count">0 songs</span> • Saved in your local browser
+                library</p>
+              <div class="playlist-actions-row">
+                <button class="btn-play-big" id="library-play-all-btn" title="Play All"><i
+                    class="fa-solid fa-play"></i></button>
+              </div>
+            </div>
+          </div>
+
+          <div class="tracks-table-container">
+            <table class="tracks-table">
+              <thead>
+                <tr>
+                  <th style="width: 40px;">#</th>
+                  <th>TITLE</th>
+                  <th>ARTIST / ALBUM</th>
+                  <th style="width: 80px;"><i class="fa-regular fa-clock"></i></th>
+                  <th style="width: 90px;">ACTIONS</th>
+                </tr>
+              </thead>
+              <tbody id="library-tracks-tbody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Artists Discovery View -->
+        <section class="view-section" id="view-artists">
+          <div class="artists-header-banner">
+            <div class="artists-banner-content">
+              <span class="artists-badge-tag"><i class="fa-solid fa-star"></i> EXPLORE ARTISTS & CREATORS</span>
+              <h1>Artists & Global Icons</h1>
+              <p>Explore legendary voices and creators across Bollywood, Marathi, Punjabi, Indie, and Global Pop.</p>
+
+              <div class="artist-search-bar-wrap">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="artist-filter-input" placeholder="Search artists by name, language, genre..."
+                  autocomplete="off">
+              </div>
+            </div>
+          </div>
+
+          <div class="artist-filter-chips" id="artist-genre-chips">
+            <button class="artist-chip active" data-genre="all">All Artists</button>
+            <button class="artist-chip" data-genre="marathi">Marathi Superstars</button>
+            <button class="artist-chip" data-genre="english">English & Global Pop</button>
+            <button class="artist-chip" data-genre="bollywood">Bollywood Superstars</button>
+            <button class="artist-chip" data-genre="punjabi">Punjabi Power</button>
+            <button class="artist-chip" data-genre="indie">Modern Pop & Indie</button>
+            <button class="artist-chip" data-genre="legends">Evergreen Legends</button>
+            <button class="artist-chip" data-genre="female">Queens of Melody</button>
+            <button class="artist-chip" data-genre="south">South Indian Magic</button>
+            <button class="artist-chip" data-genre="sufi">Sufi & Soul</button>
+          </div>
+
+          <div class="artists-grid-container" id="artists-grid-container">
+            <!-- Rendered by JS -->
+          </div>
+        </section>
+
+        <!-- Dedicated Artist Detail Page View -->
+        <section class="view-section" id="view-artist-detail">
+          <div class="artist-detail-hero" id="artist-detail-hero">
+            <div class="artist-hero-backdrop" id="artist-hero-backdrop"></div>
+            <div class="artist-hero-inner">
+              <div class="artist-hero-avatar-box">
+                <img id="artist-page-avatar" src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=400"
+                  alt="Artist">
+              </div>
+              <div class="artist-hero-info">
+                <div class="artist-verified-pill"><i class="fa-solid fa-circle-check"></i> Verified Indian Artist</div>
+                <h1 id="artist-page-name">Arijit Singh</h1>
+                <div class="artist-page-stats">
+                  <span id="artist-page-listeners"><i class="fa-solid fa-headphones"></i> 42M Monthly Listeners</span>
+                  <span>•</span>
+                  <span id="artist-page-genre">Bollywood / Romantic / Sufi</span>
+                </div>
+                <p class="artist-page-bio" id="artist-page-bio">India's most celebrated playback singer with hundreds of
+                  blockbuster anthems.</p>
+
+                <div class="artist-hero-actions">
+                  <button class="btn-artist-play-all" id="btn-artist-play-all">
+                    <i class="fa-solid fa-play"></i> Play All Songs
+                  </button>
+                  <button class="btn-artist-shuffle" id="btn-artist-shuffle">
+                    <i class="fa-solid fa-shuffle"></i> Shuffle
+                  </button>
+                  <button class="btn-artist-follow" id="btn-artist-follow">
+                    <i class="fa-solid fa-heart"></i> Favorite Artist
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Artist Popular Songs Table -->
+          <div class="artist-section-container">
+            <div class="artist-section-heading">
+              <h2><i class="fa-solid fa-fire" style="color:#ff5500;"></i> Popular Hits & Blockbusters</h2>
+              <span class="sub-label">Top streaming songs across movies and studio releases</span>
+            </div>
+
+            <div class="tracks-table-container">
+              <table class="tracks-table">
+                <thead>
+                  <tr>
+                    <th style="width: 40px;">#</th>
+                    <th>TITLE</th>
+                    <th>ALBUM / MOVIE</th>
+                    <th style="width: 80px;"><i class="fa-regular fa-clock"></i></th>
+                    <th style="width: 100px;">ACTIONS</th>
+                  </tr>
+                </thead>
+                <tbody id="artist-popular-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Artist Discography Albums -->
+          <div class="artist-section-container" id="artist-albums-container-wrap">
+            <div class="artist-section-heading">
+              <h2><i class="fa-solid fa-compact-disc" style="color:var(--spotify-green);"></i> Albums & Collections</h2>
+              <span class="sub-label">Explore full soundtracks and studio albums</span>
+            </div>
+            <div class="albums-scroll-grid" id="artist-discography-grid"></div>
+          </div>
+
+          <!-- Complete Songs Catalog for Artist -->
+          <div class="artist-section-container">
+            <div class="artist-section-heading">
+              <h2><i class="fa-solid fa-music" style="color:#38bdf8;"></i> Complete Discography (All Songs)</h2>
+              <span class="sub-label">Every song available by this artist on Sonicwave</span>
+            </div>
+            <div class="tracks-table-container">
+              <table class="tracks-table">
+                <thead>
+                  <tr>
+                    <th style="width: 40px;">#</th>
+                    <th>TITLE</th>
+                    <th>ALBUM / MOVIE</th>
+                    <th style="width: 80px;"><i class="fa-regular fa-clock"></i></th>
+                    <th style="width: 100px;">ACTIONS</th>
+                  </tr>
+                </thead>
+                <tbody id="artist-all-songs-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Similar Artists Section -->
+          <div class="artist-section-container">
+            <div class="artist-section-heading">
+              <h2><i class="fa-solid fa-sparkles" style="color:#eab308;"></i> Fans Also Like</h2>
+              <span class="sub-label">Other Indian artists you might love</span>
+            </div>
+            <div class="artists-grid-container" id="artist-similar-grid"></div>
+          </div>
+        </section>
+
+        <!-- 4. Admin Dashboard View -->
+        <section class="view-section" id="view-admin">
+          <div class="admin-header-banner">
+            <div class="admin-banner-text">
+              <span class="admin-pill-tag"><i class="fa-solid fa-crown"></i> SUPERUSER ACCESS</span>
+              <h1>Admin Management Dashboard</h1>
+              <p>Full control to manage, add, elevate, or remove users and manage uploaded music catalog.</p>
+            </div>
+            <div class="admin-header-actions">
+              <button class="btn-admin-primary" id="btn-admin-add-user-top"><i class="fa-solid fa-user-plus"></i> Add
+                New User</button>
+              <button class="btn-admin-secondary" id="btn-admin-upload-song-top"><i class="fa-solid fa-plus"></i> Upload
+                Song</button>
+            </div>
+          </div>
+
+          <!-- Admin Stat Metrics -->
+          <div class="admin-metrics-grid">
+            <div class="admin-stat-card">
+              <div class="stat-icon users-icon"><i class="fa-solid fa-users"></i></div>
+              <div class="stat-details">
+                <div class="stat-value" id="stat-total-users">3</div>
+                <div class="stat-label">Registered Users</div>
+              </div>
+            </div>
+            <div class="admin-stat-card">
+              <div class="stat-icon admins-icon"><i class="fa-solid fa-shield-halved"></i></div>
+              <div class="stat-details">
+                <div class="stat-value" id="stat-total-admins">2</div>
+                <div class="stat-label">Admin Superusers</div>
+              </div>
+            </div>
+            <div class="admin-stat-card">
+              <div class="stat-icon songs-icon"><i class="fa-solid fa-music"></i></div>
+              <div class="stat-details">
+                <div class="stat-value" id="stat-total-songs">20</div>
+                <div class="stat-label">Catalog & Hindi Songs</div>
+              </div>
+            </div>
+            <div class="admin-stat-card">
+              <div class="stat-icon custom-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+              <div class="stat-details">
+                <div class="stat-value" id="stat-custom-songs">0</div>
+                <div class="stat-label">Custom Uploads</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- User Management Table Section -->
+          <div class="admin-section-block">
+            <div class="admin-block-header">
+              <div>
+                <h2><i class="fa-solid fa-users-gear"></i> User Management Panel</h2>
+                <p>Add new accounts, promote users to Admin, or delete users instantly.</p>
+              </div>
+              <button class="btn-admin-primary" id="btn-open-add-user"><i class="fa-solid fa-user-plus"></i> Add
+                User</button>
+            </div>
+
+            <div class="admin-table-container">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th style="width: 50px;">#</th>
+                    <th>USER</th>
+                    <th>EMAIL</th>
+                    <th>ROLE</th>
+                    <th>STATUS</th>
+                    <th style="width: 170px;">ACTIONS</th>
+                  </tr>
+                </thead>
+                <tbody id="admin-users-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Songs Management Table Section -->
+          <div class="admin-section-block">
+            <div class="admin-block-header">
+              <div>
+                <h2><i class="fa-solid fa-compact-disc"></i> Song & Media Catalog Management</h2>
+                <p>Upload new Hindi / international songs or remove songs from stream catalog.</p>
+              </div>
+              <button class="btn-admin-primary" id="btn-open-upload-song"><i class="fa-solid fa-cloud-arrow-up"></i>
+                Upload Song</button>
+            </div>
+
+            <div class="admin-table-container">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th style="width: 50px;">#</th>
+                    <th>TITLE & COVER</th>
+                    <th>ARTIST / CHANNEL</th>
+                    <th>CATEGORY</th>
+                    <th>TRACK ID</th>
+                    <th style="width: 120px;">ACTIONS</th>
+                  </tr>
+                </thead>
+                <tbody id="admin-songs-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- Master Native Audio Engine -->
+    <audio id="audio-player" preload="auto"></audio>
+    <div id="yt-player-container" style="display:none; width:0; height:0;"></div>
+
+    <!-- Bottom Player Bar -->
+    <footer class="bottom-player-bar">
+      <div class="player-left">
+        <div class="track-thumb-wrapper" id="player-thumb-wrap">
+          <img id="player-thumb"
+            src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=120&auto=format&fit=crop&q=80"
+            alt="Cover">
+        </div>
+        <div class="track-meta">
+          <div class="track-title-scroller" id="player-title">Bohemian Rhapsody</div>
+          <div class="track-artist" id="player-artist">Queen</div>
+        </div>
+        <button class="btn-like-track" id="player-like-btn" title="Save to Liked Songs"><i
+            class="fa-regular fa-heart"></i></button>
+      </div>
+
+      <div class="player-center">
+        <div class="player-controls-buttons">
+          <button class="control-btn" id="btn-shuffle" title="Shuffle"><i class="fa-solid fa-shuffle"></i></button>
+          <button class="control-btn" id="btn-prev" title="Previous"><i class="fa-solid fa-backward-step"></i></button>
+          <button class="control-btn btn-main-play" id="btn-play-pause" title="Play/Pause"><i
+              class="fa-solid fa-play"></i></button>
+          <button class="control-btn" id="btn-next" title="Next"><i class="fa-solid fa-forward-step"></i></button>
+          <button class="control-btn" id="btn-repeat" title="Repeat"><i class="fa-solid fa-repeat"></i></button>
+        </div>
+
+        <div class="playback-progress-row">
+          <span class="time-label" id="time-current">0:00</span>
+          <div class="progress-bar-wrapper" id="progress-bar-wrapper">
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill" id="progress-bar-fill"></div>
+              <div class="progress-bar-handle" id="progress-bar-handle"></div>
+            </div>
+          </div>
+          <span class="time-label" id="time-duration">0:00</span>
+        </div>
+      </div>
+
+      <div class="player-right">
+        <button class="right-icon-btn" id="btn-toggle-queue" title="Queue"><i class="fa-solid fa-list-ul"></i></button>
+        <div class="volume-container">
+          <button class="right-icon-btn" id="btn-volume" title="Mute/Unmute"><i
+              class="fa-solid fa-volume-high"></i></button>
+          <div class="volume-bar-wrapper" id="volume-bar-wrapper">
+            <div class="volume-bar-bg">
+              <div class="volume-bar-fill" id="volume-bar-fill"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Mobile Bottom Navigation Bar -->
+  <nav class="mobile-bottom-nav" id="mobile-bottom-nav">
+    <button class="mobile-nav-btn active" data-view="home">
+      <i class="fa-solid fa-house"></i>
+      <span>Home</span>
+    </button>
+    <button class="mobile-nav-btn" data-view="search">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <span>Search</span>
+    </button>
+    <button class="mobile-nav-btn" data-view="artists">
+      <i class="fa-solid fa-users-line"></i>
+      <span>Artists</span>
+    </button>
+    <button class="mobile-nav-btn" data-view="library">
+      <i class="fa-solid fa-book-bookmark"></i>
+      <span>Library</span>
+    </button>
+  </nav>
+
+  <!-- Queue Panel -->
+  <div class="queue-flyout-panel" id="queue-flyout">
+    <div class="queue-header">
+      <h3>Play Queue</h3>
+      <button id="queue-close-btn"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="queue-section-title">Now Playing</div>
+    <div class="queue-now-playing" id="queue-now-playing-item"></div>
+    <div class="queue-section-title">Next Up</div>
+    <ul class="queue-items-list" id="queue-items-list"></ul>
+  </div>
+
+  <!-- Create Playlist Modal -->
+  <div class="modal-overlay" id="create-playlist-modal" style="display:none;">
+    <div class="modal-card">
+      <h3>Create New Playlist</h3>
+      <input type="text" id="new-playlist-input" placeholder="Playlist Name">
+      <div class="modal-actions">
+        <button class="btn-modal-cancel" id="btn-modal-cancel">Cancel</button>
+        <button class="btn-modal-create" id="btn-modal-create">Create</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- User Auth (Login / Sign Up) Modal -->
+  <div class="modal-overlay" id="auth-modal" style="display:none;">
+    <div class="modal-card auth-modal-card">
+      <div class="auth-modal-header">
+        <div class="auth-tabs">
+          <button class="auth-tab-btn active" id="tab-btn-login">Login</button>
+          <button class="auth-tab-btn" id="tab-btn-signup">Sign Up</button>
+        </div>
+        <button class="modal-close-icon" id="auth-modal-close"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <!-- Login Form -->
+      <form class="auth-form" id="login-form">
+        <div class="auth-input-group">
+          <label>Username or Email</label>
+          <input type="text" id="login-username" placeholder="e.g. admin or Sai Patil" required autocomplete="username">
+        </div>
+        <div class="auth-input-group">
+          <label>Password</label>
+          <input type="password" id="login-password" placeholder="••••••••" required autocomplete="current-password">
+        </div>
+        <div class="auth-hint"><i class="fa-solid fa-shield-halved"></i> Encrypted SonicWave Authentication Engine</div>
+        <div class="modal-actions">
+          <button type="button" class="btn-modal-cancel" id="btn-login-cancel">Cancel</button>
+          <button type="submit" class="btn-modal-create">Login</button>
+        </div>
+      </form>
+
+      <!-- Sign Up Form -->
+      <form class="auth-form" id="signup-form" style="display:none;">
+        <div class="auth-input-group">
+          <label>Full Name / Username</label>
+          <input type="text" id="signup-username" placeholder="e.g. Rahul Sharma" required>
+        </div>
+        <div class="auth-input-group">
+          <label>Email Address</label>
+          <input type="email" id="signup-email" placeholder="rahul@example.com" required>
+        </div>
+        <div class="auth-input-group">
+          <label>Password</label>
+          <input type="password" id="signup-password" placeholder="••••••••" required>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn-modal-cancel" id="btn-signup-cancel">Cancel</button>
+          <button type="submit" class="btn-modal-create">Create Account</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Admin Add User Modal -->
+  <div class="modal-overlay" id="add-user-modal" style="display:none;">
+    <div class="modal-card">
+      <h3><i class="fa-solid fa-user-plus" style="color:var(--spotify-green)"></i> Add New User</h3>
+      <p style="font-size:12px; color:var(--text-secondary); margin-top:4px;">Create a new user account with custom
+        role.</p>
+      <form id="admin-add-user-form" style="margin-top: 16px;">
+        <div class="auth-input-group">
+          <label>Username</label>
+          <input type="text" id="new-user-name" placeholder="e.g. John Doe" required>
+        </div>
+        <div class="auth-input-group">
+          <label>Email</label>
+          <input type="email" id="new-user-email" placeholder="john@example.com" required>
+        </div>
+        <div class="auth-input-group">
+          <label>Password</label>
+          <input type="password" id="new-user-pass" placeholder="••••••••" required>
+        </div>
+        <div class="auth-input-group">
+          <label>Role</label>
+          <select id="new-user-role" class="auth-select">
+            <option value="User">Standard User</option>
+            <option value="Admin">Administrator (Full Access)</option>
+          </select>
+        </div>
+        <div class="modal-actions" style="margin-top: 20px;">
+          <button type="button" class="btn-modal-cancel" id="btn-add-user-cancel">Cancel</button>
+          <button type="submit" class="btn-modal-create">Add User</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Upload Song Modal -->
+  <div class="modal-overlay" id="upload-song-modal" style="display:none;">
+    <div class="modal-card upload-modal-card">
+      <h3><i class="fa-solid fa-cloud-arrow-up" style="color:var(--spotify-green)"></i> Upload / Add New Song</h3>
+      <p style="font-size:12px; color:var(--text-secondary); margin-top:4px;">Add any song by title, artist, audio URL,
+        and album details.</p>
+      <form id="upload-song-form" style="margin-top: 16px;">
+        <div class="auth-input-group">
+          <label>Song Title</label>
+          <input type="text" id="upload-song-title" placeholder="e.g. Kesariya or Chaleya" required>
+        </div>
+        <div class="auth-input-group">
+          <label>Artist / Singer</label>
+          <input type="text" id="upload-song-artist" placeholder="e.g. Arijit Singh, Pritam" required>
+        </div>
+        <div class="auth-input-group">
+          <label>Direct Audio Stream URL or Track ID</label>
+          <input type="text" id="upload-song-yt" placeholder="e.g. https://youtu.be/BddP6PYo2gs or BddP6PYo2gs"
+            required>
+        </div>
+        <div class="auth-input-group">
+          <label>Category</label>
+          <select id="upload-song-category" class="auth-select">
+            <option value="hindi">Bollywood & Hindi Superhits</option>
+            <option value="trending">Global Trending Hits</option>
+            <option value="lofi">Lo-Fi Chill & Beats</option>
+            <option value="live">Live Concert Performance</option>
+            <option value="official">Official Music Video</option>
+          </select>
+        </div>
+        <div class="auth-input-group">
+          <label>Cover Image URL (Optional)</label>
+          <input type="url" id="upload-song-cover" placeholder="Cover Image URL (e.g. Unsplash/Spotify art)">
+        </div>
+        <div class="modal-actions" style="margin-top: 20px;">
+          <button type="button" class="btn-modal-cancel" id="btn-upload-song-cancel">Cancel</button>
+          <button type="submit" class="btn-modal-create"><i class="fa-solid fa-plus"></i> Add to Website</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Album Detail Modal -->
+  <div class="modal-overlay" id="album-detail-modal" style="display:none;">
+    <div class="modal-card album-modal-card" style="max-width: 680px; width: 90%; max-height: 85vh; overflow-y: auto;">
+      <div class="album-modal-header"
+        style="display: flex; gap: 18px; align-items: center; margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 16px; position: relative;">
+        <img id="album-modal-cover" src="" alt="Album Cover"
+          style="width: 110px; height: 110px; border-radius: 8px; object-fit: cover;">
+        <div style="flex: 1;">
+          <span style="font-size: 11px; font-weight: 700; color: var(--spotify-green);">OFFICIAL ALBUM</span>
+          <h2 id="album-modal-title" style="font-size: 20px; font-weight: 800; margin: 4px 0;">Album Name</h2>
+          <p id="album-modal-artist" style="color: var(--text-secondary); font-size: 13px;">Artist Name</p>
+          <p id="album-modal-meta" style="color: var(--text-muted); font-size: 12px; margin-top: 4px;">Studio Release
+          </p>
+        </div>
+        <button class="modal-close-icon" id="album-modal-close" style="position:absolute; top:0; right:0;"><i
+            class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="tracks-table-container">
+        <table class="tracks-table">
+          <thead>
+            <tr>
+              <th style="width: 35px;">#</th>
+              <th>TITLE</th>
+              <th style="width: 70px;"><i class="fa-regular fa-clock"></i></th>
+              <th style="width: 80px;">ACTION</th>
+            </tr>
+          </thead>
+          <tbody id="album-modal-tracks-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator && window.location.protocol.startsWith('http')) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js').catch(err => {
+          console.log('SW registration note:', err);
+        });
+      });
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,24 @@
+﻿version: '3.8'
+
+services:
+  sonicwave:
+    build: .
+    container_name: sonicwave-streaming
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+    security_opt:
+      - "no-new-privileges:true"
+    environment:
+      - PORT=8080
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 512M
+    healthcheck:
+      test: [ "CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8080/', timeout=2)" ]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
