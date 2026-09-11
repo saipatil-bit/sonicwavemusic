@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; media-src 'self' https:; frame-src https:; connect-src 'self' https:;">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>SonicWave - Sign In & Registration</title>
+
+  <!-- Primary Meta Tags -->
+  <meta name="title" content="SonicWave - Sign In & Next-Gen Music Streaming">
+  <meta name="description" content="Sign in or create your free SonicWave account. Stream 180+ verified hits across Bollywood, Marathi, and Global Pop with zero ads and lossless fidelity.">
+  <meta name="theme-color" content="#07070a">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="SonicWave - Sign In & Join Next-Gen Music Streaming">
+  <meta property="og:description" content="Stream 180+ verified hits across 41+ top artists with custom playlists and lossless audio.">
+  <meta property="og:image" content="logo.png">
+
+  <!-- Icons -->
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="apple-touch-icon" href="logo.png">
+  <link rel="manifest" href="manifest.json">
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="login.css">
+</head>
+<body>
+  <!-- Ambient Gradient Background Elements -->
+  <div class="ambient-glow orb-emerald"></div>
+  <div class="ambient-glow orb-cyan"></div>
+  <div class="ambient-glow orb-purple"></div>
+  <div class="bg-grid-mesh"></div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- Main Login Page Container -->
+  <div class="auth-page-wrapper">
+    
+    <!-- Header / Navigation Bar -->
+    <header class="auth-nav-header">
+      <a href="index.html" class="brand-logo" title="Back to SonicWave Home">
+        <div class="brand-img-box">
+          <img src="logo.jpg" alt="SonicWave Logo" class="brand-img" onerror="this.src='logo.png'">
+        </div>
+        <span class="brand-name">Sonic<span class="brand-accent">wave</span></span>
+      </a>
+
+      <div class="auth-nav-actions">
+        <a href="index.html" class="nav-guest-btn">
+          <span>Explore as Guest</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+    </header>
+
+    <!-- Split Screen Content Grid -->
+    <main class="auth-main-grid">
+      
+      <!-- LEFT HERO SHOWCASE PANEL -->
+      <section class="auth-showcase-panel">
+        <div class="showcase-content">
+          <div class="showcase-badge">
+            <span class="pulse-dot"></span>
+            <span>NEXT-GEN AUDIO STREAMING</span>
+          </div>
+
+          <h1 class="showcase-title">
+            Feel Every Beat.<br>
+            <span class="gradient-text">Own the Wave.</span>
+          </h1>
+
+          <p class="showcase-desc">
+            Discover over <strong>180+ verified master tracks</strong> across 41+ top Indian, Marathi, and Global artists with lossless acoustics, real-time queue management, and zero ads.
+          </p>
+
+          <!-- Interactive Visualizer Widget -->
+          <div class="visualizer-card">
+            <div class="visualizer-top">
+              <div class="vinyl-record-wrap">
+                <div class="vinyl-disc">
+                  <div class="vinyl-center">
+                    <i class="fa-solid fa-music"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="track-meta">
+                <span class="track-status"><i class="fa-solid fa-satellite-dish"></i> LIVE CATALOG</span>
+                <h3 class="track-title">Kesariya • Brahmāstra</h3>
+                <p class="track-artist">Arijit Singh, Pritam, Amitabh Bhattacharya</p>
+              </div>
+              <div class="audio-equalizer">
+                <span class="eq-bar bar-1"></span>
+                <span class="eq-bar bar-2"></span>
+                <span class="eq-bar bar-3"></span>
+                <span class="eq-bar bar-4"></span>
+                <span class="eq-bar bar-5"></span>
+                <span class="eq-bar bar-6"></span>
+              </div>
+            </div>
+
+            <div class="visualizer-wave-canvas">
+              <div class="wave-line-wrap">
+                <div class="wave-glow-line"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Feature Highlights Grid -->
+          <div class="features-grid">
+            <div class="feature-item">
+              <div class="feature-icon"><i class="fa-solid fa-bolt"></i></div>
+              <div class="feature-text">
+                <strong>Lossless Fidelity</strong>
+                <span>Direct crystal-clear YouTube streaming</span>
+              </div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon"><i class="fa-solid fa-layer-group"></i></div>
+              <div class="feature-text">
+                <strong>Custom Playlists</strong>
+                <span>Build, save, and curate your audio universe</span>
+              </div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon"><i class="fa-solid fa-ban"></i></div>
+              <div class="feature-text">
+                <strong>Zero Audio Ads</strong>
+                <span>Uninterrupted, continuous music flow</span>
+              </div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon"><i class="fa-solid fa-crown"></i></div>
+              <div class="feature-text">
+                <strong>Admin Studio</strong>
+                <span>Role privileges, catalog control & user studio</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Platform Statistics -->
+          <div class="showcase-stats">
+            <div class="stat-pill">
+              <span class="stat-num">180+</span>
+              <span class="stat-label">Verified Songs</span>
+            </div>
+            <div class="stat-pill">
+              <span class="stat-num">41+</span>
+              <span class="stat-label">Iconic Artists</span>
+            </div>
+            <div class="stat-pill">
+              <span class="stat-num">100%</span>
+              <span class="stat-label">Free & Open</span>
+            </div>
+            <div class="stat-pill">
+              <span class="stat-num">4.9★</span>
+              <span class="stat-label">Listener Rating</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- RIGHT GLASSMORPHIC AUTH FORM PANEL -->
+      <section class="auth-form-panel">
+        <div class="auth-card">
+          
+          <!-- Card Header & Navigation Tabs -->
+          <div class="auth-card-header">
+            <div class="auth-card-logo">
+              <img src="logo.jpg" alt="SonicWave" onerror="this.src='logo.png'">
+            </div>
+            <h2 class="auth-card-title" id="auth-heading">Welcome back</h2>
+            <p class="auth-card-subtitle" id="auth-subheading">Sign in to sync your playlists and liked music</p>
+            
+            <div class="auth-tab-bar" role="tablist">
+              <button class="auth-tab-btn active" id="tab-login" role="tab" aria-selected="true" aria-controls="form-login">
+                <i class="fa-solid fa-right-to-bracket"></i>
+                <span>Sign In</span>
+              </button>
+              <button class="auth-tab-btn" id="tab-register" role="tab" aria-selected="false" aria-controls="form-register">
+                <i class="fa-solid fa-user-plus"></i>
+                <span>Create Account</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- ================= 1. SIGN IN FORM ================= -->
+          <form class="auth-form active" id="form-login" novalidate>
+            <div class="form-group">
+              <label for="login-identifier" class="form-label">Username or Email</label>
+              <div class="input-wrapper">
+                <i class="fa-solid fa-user input-icon"></i>
+                <input 
+                  type="text" 
+                  id="login-identifier" 
+                  name="identifier" 
+                  class="form-input" 
+                  placeholder="e.g. sai@sonicwave.com or admin" 
+                  required 
+                  autocomplete="username"
+                  spellcheck="false"
+                >
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="label-row">
+                <label for="login-password" class="form-label">Password</label>
+                <button type="button" class="forgot-link-btn" id="btn-open-forgot">Forgot password?</button>
+              </div>
+              <div class="input-wrapper">
+                <i class="fa-solid fa-lock input-icon"></i>
+                <input 
+                  type="password" 
+                  id="login-password" 
+                  name="password" 
+                  class="form-input" 
+                  placeholder="Enter your password" 
+                  required 
+                  autocomplete="current-password"
+                >
+                <button type="button" class="pwd-toggle-btn" data-target="login-password" aria-label="Toggle password visibility">
+                  <i class="fa-regular fa-eye"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="form-options-row">
+              <label class="custom-checkbox">
+                <input type="checkbox" id="login-remember" checked>
+                <span class="checkbox-box"><i class="fa-solid fa-check"></i></span>
+                <span class="checkbox-label">Keep me signed in for 30 days</span>
+              </label>
+            </div>
+
+            <button type="submit" class="btn-submit-auth" id="btn-login-submit">
+              <span class="btn-spinner" style="display:none;"><i class="fa-solid fa-spinner fa-spin"></i></span>
+              <span class="btn-text">Sign In to SonicWave</span>
+              <i class="fa-solid fa-arrow-right btn-icon"></i>
+            </button>
+
+            <!-- One-Click Fast Demo Accounts Box -->
+            <div class="demo-accounts-box">
+              <div class="demo-box-header">
+                <i class="fa-solid fa-bolt"></i>
+                <span>One-Click Fast Demo Login</span>
+              </div>
+              <div class="demo-btn-grid">
+                <button type="button" class="demo-btn admin-demo" id="btn-quick-admin" title="Log in as Admin Sai Patil">
+                  <div class="demo-icon"><i class="fa-solid fa-crown"></i></div>
+                  <div class="demo-info">
+                    <strong>Admin Profile</strong>
+                    <span>Sai Patil • Full Access</span>
+                  </div>
+                </button>
+                <button type="button" class="demo-btn user-demo" id="btn-quick-user" title="Log in as Standard Listener">
+                  <div class="demo-icon"><i class="fa-solid fa-headphones"></i></div>
+                  <div class="demo-info">
+                    <strong>Standard Listener</strong>
+                    <span>Rahul Sharma • Member</span>
+                  </div>
+                </button>
+              </div>
+            </div>
+          </form>
+
+          <!-- ================= 2. CREATE ACCOUNT FORM ================= -->
+          <form class="auth-form" id="form-register" style="display:none;" novalidate>
+            <div class="form-group">
+              <label for="reg-username" class="form-label">Full Name or Username</label>
+              <div class="input-wrapper">
+                <i class="fa-solid fa-user-tag input-icon"></i>
+                <input 
+                  type="text" 
+                  id="reg-username" 
+                  name="username" 
+                  class="form-input" 
+                  placeholder="e.g. Rahul Sharma" 
+                  required 
+                  autocomplete="name"
+                  minlength="3"
+                  maxlength="30"
+                  spellcheck="false"
+                >
+              </div>
+              <span class="input-hint">Must be 3 to 30 characters long</span>
+            </div>
+
+            <div class="form-group">
+              <label for="reg-email" class="form-label">Email Address</label>
+              <div class="input-wrapper">
+                <i class="fa-solid fa-envelope input-icon"></i>
+                <input 
+                  type="email" 
+                  id="reg-email" 
+                  name="email" 
+                  class="form-input" 
+                  placeholder="name@example.com" 
+                  required 
+                  autocomplete="email"
+                >
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="reg-role" class="form-label">Account Role & Privileges</label>
+              <div class="input-wrapper select-wrapper">
+                <i class="fa-solid fa-shield-halved input-icon"></i>
+                <select id="reg-role" class="form-input form-select">
+                  <option value="User">🎧 Standard Listener (Playlists, Likes & Streaming)</option>
+                  <option value="Admin">👑 Curator & Admin (Catalog Uploads & User Studio)</option>
+                </select>
+                <i class="fa-solid fa-chevron-down select-arrow"></i>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="reg-password" class="form-label">Password</label>
+              <div class="input-wrapper">
+                <i class="fa-solid fa-lock input-icon"></i>
+                <input 
+                  type="password" 
+                  id="reg-password" 
+                  name="password" 
+                  class="form-input" 
+                  placeholder="Create a strong password" 
+                  required 
+                  autocomplete="new-password"
+                >
+                <button type="button" class="pwd-toggle-btn" data-target="reg-password" aria-label="Toggle password visibility">
+                  <i class="fa-regular fa-eye"></i>
+                </button>
+              </div>
+
+              <!-- Real-time Password Strength Meter -->
+              <div class="pwd-strength-container" id="strength-meter-box">
+                <div class="strength-bar-track">
+                  <div class="strength-bar-fill" id="strength-bar"></div>
+                </div>
+                <div class="strength-meta">
+                  <span class="strength-text" id="strength-text">Password strength: None</span>
+                  <span class="strength-score-label" id="strength-score">0/4</span>
+                </div>
+                <div class="strength-criteria-grid">
+                  <span class="crit-item" id="crit-len"><i class="fa-solid fa-circle-xmark"></i> 6+ chars</span>
+                  <span class="crit-item" id="crit-upper"><i class="fa-solid fa-circle-xmark"></i> Uppercase</span>
+                  <span class="crit-item" id="crit-num"><i class="fa-solid fa-circle-xmark"></i> Number</span>
+                  <span class="crit-item" id="crit-sym"><i class="fa-solid fa-circle-xmark"></i> Symbol</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="reg-confirm-password" class="form-label">Confirm Password</label>
+              <div class="input-wrapper">
+                <i class="fa-solid fa-shield-check input-icon"></i>
+                <input 
+                  type="password" 
+                  id="reg-confirm-password" 
+                  name="confirmPassword" 
+                  class="form-input" 
+                  placeholder="Re-enter your password" 
+                  required 
+                  autocomplete="new-password"
+                >
+                <button type="button" class="pwd-toggle-btn" data-target="reg-confirm-password" aria-label="Toggle password visibility">
+                  <i class="fa-regular fa-eye"></i>
+                </button>
+              </div>
+              <div class="pwd-match-indicator" id="pwd-match-text"></div>
+            </div>
+
+            <div class="form-options-row">
+              <label class="custom-checkbox">
+                <input type="checkbox" id="reg-terms" required checked>
+                <span class="checkbox-box"><i class="fa-solid fa-check"></i></span>
+                <span class="checkbox-label">I accept SonicWave Terms of Service & Privacy</span>
+              </label>
+            </div>
+
+            <button type="submit" class="btn-submit-auth" id="btn-register-submit">
+              <span class="btn-spinner" style="display:none;"><i class="fa-solid fa-spinner fa-spin"></i></span>
+              <span class="btn-text">Create Free Account</span>
+              <i class="fa-solid fa-sparkles btn-icon"></i>
+            </button>
+          </form>
+
+          <!-- Social SSO Sign-in Options -->
+          <div class="auth-divider">
+            <span>OR CONTINUE WITH</span>
+          </div>
+
+          <div class="social-login-grid">
+            <button type="button" class="social-btn google-btn" id="btn-social-google" title="Sign in with Google">
+              <svg class="social-svg" viewBox="0 0 24 24" width="18" height="18">
+                <path fill="#EA4335" d="M12 5c1.6 0 3 .6 4.1 1.7l3.1-3.1C17.3 1.8 14.8 1 12 1 7.4 1 3.5 3.6 1.6 7.4l3.7 2.9C6.2 7.4 8.9 5 12 5z"/>
+                <path fill="#4285F4" d="M23.5 12.3c0-.8-.1-1.7-.2-2.3H12v4.6h6.5c-.3 1.5-1.1 2.8-2.4 3.7l3.7 2.9c2.2-2 3.7-5 3.7-8.9z"/>
+                <path fill="#FBBC05" d="M5.3 14.7c-.2-.7-.4-1.5-.4-2.7s.1-2 .4-2.7L1.6 6.4C.6 8.4 0 10.6 0 12s.6 3.6 1.6 5.6l3.7-2.9z"/>
+                <path fill="#34A853" d="M12 23c3.2 0 6-1.1 8-3l-3.7-2.9c-1.1.7-2.5 1.2-4.3 1.2-3.1 0-5.8-2.4-6.7-5.3L1.6 16c1.9 3.8 5.8 7 10.4 7z"/>
+              </svg>
+              <span>Google</span>
+            </button>
+
+            <button type="button" class="social-btn spotify-btn" id="btn-social-spotify" title="Sign in with Spotify">
+              <i class="fa-brands fa-spotify"></i>
+              <span>Spotify</span>
+            </button>
+
+            <button type="button" class="social-btn apple-btn" id="btn-social-apple" title="Sign in with Apple">
+              <i class="fa-brands fa-apple"></i>
+              <span>Apple</span>
+            </button>
+          </div>
+
+          <!-- Bottom Footer Links -->
+          <div class="auth-card-footer">
+            <div class="guest-nav-box">
+              <span>Ready to start listening right now?</span>
+              <a href="index.html" class="guest-link-accent">
+                <span>Continue without Account</span>
+                <i class="fa-solid fa-arrow-right"></i>
+              </a>
+            </div>
+
+            <div class="security-badge-box">
+              <i class="fa-solid fa-shield-halved"></i>
+              <span>256-Bit Salted SHA Encryption • Zero-Log Storage</span>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ================= FORGOT PASSWORD MODAL ================= -->
+  <div class="modal-backdrop" id="modal-forgot" style="display:none;">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div class="modal-header-icon"><i class="fa-solid fa-key"></i></div>
+        <div>
+          <h3 class="modal-title">Reset Your Password</h3>
+          <p class="modal-subtitle">Enter your account email or username to update your credentials.</p>
+        </div>
+        <button type="button" class="modal-close-btn" id="btn-close-forgot" aria-label="Close modal">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <form id="form-reset-password" class="modal-body">
+        <div class="form-group">
+          <label for="reset-identifier" class="form-label">Username or Registered Email</label>
+          <div class="input-wrapper">
+            <i class="fa-solid fa-user input-icon"></i>
+            <input type="text" id="reset-identifier" class="form-input" placeholder="e.g. sai@sonicwave.com or admin" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="reset-new-password" class="form-label">New Password</label>
+          <div class="input-wrapper">
+            <i class="fa-solid fa-lock input-icon"></i>
+            <input type="password" id="reset-new-password" class="form-input" placeholder="Enter new password (min 6 chars)" required minlength="6">
+            <button type="button" class="pwd-toggle-btn" data-target="reset-new-password" aria-label="Toggle password visibility">
+              <i class="fa-regular fa-eye"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" class="modal-btn-cancel" id="btn-cancel-forgot">Cancel</button>
+          <button type="submit" class="modal-btn-confirm" id="btn-confirm-reset">
+            <i class="fa-solid fa-rotate"></i>
+            <span>Update Password</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="login.js"></script>
+</body>
+</html>

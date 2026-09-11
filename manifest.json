@@ -1,0 +1,24 @@
+{
+  "name": "Sonicwave - Music & Audio Streaming",
+  "short_name": "Sonicwave",
+  "description": "Stream 180+ tracks from 41+ top Indian, Marathi, and Global Pop artists with custom playlists and rich album art.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#121212",
+  "theme_color": "#1db954",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
